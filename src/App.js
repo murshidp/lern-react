@@ -1,36 +1,15 @@
-import React from 'react';
-import './App.css'
-import Header from "./components/Header"
-import ContactCard from "./components/ContactCard"
-
-function App() {
-  return (
-    <div className="contact-card">
-     <ContactCard
-     contact = {{name:"murshid",imgUrl:"http://placekitten.com/300/200",
-     phone:"9977665544",email:"msd@g.com"}}
-      
-     />
-     <ContactCard
-      contact = {{name:"adul",
-      imgUrl:"http://placekitten.com/400/200",
-      phone:"887665432",
-      email:"adul@gmail.com"}}
-     />
-     <ContactCard 
-      contact ={{name:"asik",
-      imgUrl:"http://placekitten.com/300/300",
-      phone:"9999999999",
-      email:"ashik@gmail.com"}}
-     />
-     <ContactCard 
-     contact={{name:"jash",
-     imgUrl:"http://placekitten.com/200/100",
-     phone:"9966554433",
-     email:"js@gmail.com"}}
-     />
+import React from "react"
+import Joke from "./components/Joke"
+function App(){
+  return(
+    <div>
+      <Joke punchLine="iam fine thankyou"/>
+      <Joke question="your name" punchLine="murshid"/>
+      <Joke question="your qualification" punchLine="mca"/>
+      <Joke question="your experiance in" punchLine="django framework"/>
+      <Joke question="your degree" punchLine="bsc computer science"/>
+      <Joke question="how old are you" punchLine="24 year old"/>
     </div>
-  );
+  )
 }
-
-export default App;
+export default App
