@@ -1,39 +1,33 @@
-import React from 'react';
-import './App.css'
-import ToDoItem from "./components/ToDoItem"
-import todoData from './components/ToDoDatas';
+import React from "react"
 
-class App extends React.Component {
-  constructor(){
-    super()
-    this.state = {
-      todos: todoData
-    }
-    this.handleChange=this.handleChange.bind(this)
+class App extends React.Component{
+  constructor() {
+   super()
+   this.state   ={
+     loading:false,
+     character:{}
+   }
   }
-  handleChange(id){
-    this.setState(prevState =>{
-      const updatedTodos = prevState.todos.map(todo => {
-        if(todo.id === id){
-          todo.completed = !todo.completed
-        }
-        return todo
-      })
-      return{
-        todos:updatedTodos
-      }
+  componentDidMount(){
+    this.setState({loading:true})
+    fetch("https://jsonplaceholder.typicode.com/todos/2")
+    .then(response =>response.json())
+    .then(data =>{
+      this.setState({loading:false,
+                      character:data    
+        })
+
     })
   }
   render(){
-    const todoItems = this.state.todos.map(item => <ToDoItem key={item.id} item={item} handleChange={this.handleChange}/>)
-    return (
-      <div className="todo-list">
-        {todoItems}
-       
-      </div>
-    );
+    const text = this.state.loading ? "Loading....." : this.state.character.title
+    return(
+      <div>
+      <p>{text}</p>
+    </div>
+    )
+    
   }
-  }
- 
+}
 
-export default App;
+export default App
