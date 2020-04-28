@@ -1,32 +1,30 @@
 import React from "react"
 
 class App extends React.Component{
-  constructor() {
-   super()
-   this.state   ={
-     loading:false,
-     character:{}
-   }
+  constructor(){
+    super()
+    this.state = {
+      firstName:"",
+      lastName:""
+    }
+    this.handleChange=this.handleChange.bind(this)
   }
-  componentDidMount(){
-    this.setState({loading:true})
-    fetch("https://jsonplaceholder.typicode.com/todos/2")
-    .then(response =>response.json())
-    .then(data =>{
-      this.setState({loading:false,
-                      character:data    
-        })
-
+  handleChange(event){
+    const {name, value} = event.target
+    this.setState({
+      [name]:value
     })
   }
   render(){
-    const text = this.state.loading ? "Loading....." : this.state.character.title
     return(
-      <div>
-      <p>{text}</p>
-    </div>
+      <form>
+        <input type="text" value={this.state.firstName} name="firstName"
+        placeholder="first name" onChange={this.handleChange}/><br></br>
+        <input type="text" value={this.state.lastName} name="lastName"
+        placeholder="last name" onChange={this.handleChange}/>
+        <h1>{this.state.firstName} {this.state.lastName}</h1>
+      </form>
     )
-    
   }
 }
 
